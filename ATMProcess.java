@@ -161,8 +161,7 @@ public class ATMProcess {
 					System.out.println("WITHDRAWL SUCCESSFULLY");
 					if (debit % 2000 == 0) {
 						int c = debit / 2000;
-						PreparedStatement pst2 = con
-								.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
+						PreparedStatement pst2 = con.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
 						int value = c * 2000;
 						pst2.setInt(1, c);
 						pst2.setInt(2, value);
@@ -170,15 +169,13 @@ public class ATMProcess {
 						pst2.executeUpdate();
 					} else if (debit % 1000 == 0 && debit > 3000) {
 						int c = debit / 2000;
-						PreparedStatement pst2 = con
-								.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
+						PreparedStatement pst2 = con.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
 						int value = c * 2000;
 						pst2.setInt(1, c);
 						pst2.setInt(2, value);
 						pst2.setInt(3, 2000);
 						pst2.executeUpdate();
-						PreparedStatement pst3 = con
-								.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
+						PreparedStatement pst3 = con.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
 						pst3.setInt(1, 2);
 						pst3.setInt(2, 1000);
 						pst3.setInt(3, 500);
@@ -186,8 +183,7 @@ public class ATMProcess {
 					} else {
 						int c = debit / 2000;
 						debit -= c * 2000;
-						PreparedStatement pst2 = con
-								.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
+						PreparedStatement pst2 = con.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
 						int value = c * 2000;
 						pst2.setInt(1, c);
 						pst2.setInt(2, value);
@@ -195,16 +191,14 @@ public class ATMProcess {
 						pst2.executeUpdate();
 						if (debit >= 1000) {
 							debit -= 1000;
-							PreparedStatement pst3 = con.prepareStatement(
-									"update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
+							PreparedStatement pst3 = con.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
 							pst3.setInt(1, 2);
 							pst3.setInt(2, 1000);
 							pst3.setInt(3, 500);
 							pst3.executeUpdate();
 						}
 						int d = debit / 100;
-						PreparedStatement pst4 = con
-								.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
+						PreparedStatement pst4 = con.prepareStatement("update ATM set NUMBER=NUMBER-?, VALUE=VALUE-?  where DENOMINATION=? ");
 						pst4.setInt(1, d);
 						pst4.setInt(2, debit);
 						pst4.setInt(3, 100);
@@ -256,8 +250,7 @@ public class ATMProcess {
 					pst1.setInt(1, accBal);
 					pst1.setInt(2, send_acc_no);
 					pst1.executeUpdate();
-					PreparedStatement pst2 = con
-							.prepareStatement("update CUSTOMER set ACC_BALANCE=ACC_BALANCE+? where ACC_NO=?");
+					PreparedStatement pst2 = con.prepareStatement("update CUSTOMER set ACC_BALANCE=ACC_BALANCE+? where ACC_NO=?");
 					pst2.setInt(1, trans);
 					pst2.setInt(2, rece_acc_no);
 					pst2.executeUpdate();
@@ -272,7 +265,7 @@ public class ATMProcess {
 			con = DButil.getconnect();
 			PreparedStatement pst1 = con.prepareStatement("SELECT * FROM ATM ");
 			rs = pst1.executeQuery();
-			System.out.println("DENOMINATION    	NUMBER    	VALUE");
+			System.out.println("DENOMINATION NUMBER VALUE");
 			while (rs.next()) {
 				System.out.println("	" + rs.getInt(1) + "		" + rs.getInt(2) + "   		 " + rs.getInt(3));
 			}
@@ -297,7 +290,6 @@ public class ATMProcess {
 		}
 
 		public static void main(String args[]) throws ClassNotFoundException, SQLException {
-			System.out.println("ROLL NO:20F204\n");
 				System.out.print("1. Load cash to ATM\n2. Show customer Details\n3. Show ATM operations\n4. ExitS\n");
 				System.out.print("ENTER THE CHOICE FROM MENU TO DO ");
 				int cho1 = sc.nextInt();
@@ -309,8 +301,7 @@ public class ATMProcess {
 					show_Customer_details();
 					break;
 				case 3:
-					System.out.print(
-							"1. Check Balance\n2. Withdraw Money\n3. Transfer Money\n4. Check ATM Balance\n5. ExitS\n");
+					System.out.print("1. Check Balance\n2. Withdraw Money\n3. Transfer Money\n4. Check ATM Balance\n5. ExitS\n");
 					System.out.print("ENTER THE CHOICE FROM MENU TO DO ");
 					int cho2 = sc.nextInt();
 					switch (cho2) {
